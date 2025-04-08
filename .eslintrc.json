@@ -1,0 +1,61 @@
+{
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+  },
+  "overrides": [
+    {
+      "files": ["src/core/**/*.{ts,tsx}"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "@modules/ml",
+                "message": "Core modules must not import from ML module"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/shared/external-communication/**/*.{ts,tsx}"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "@modules/ml",
+                "message": "External Communication module must not depend on ML."
+              },
+              {
+                "name": "@core/users",
+                "message": "External Communication module must not import from @core/users"
+              },
+              {
+                "name": "@core/auth",
+                "message": "External Communication module must not import from @core/auth"
+              }
+
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

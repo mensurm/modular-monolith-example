@@ -1,5 +1,11 @@
-In order to keep control of how the modules are used, 
-add the linter as a part of your code pipeline, so that errors there
-will trigger the build to fail. 
+This is an example of a modular monolith setup in Typescript.
+The code is split into 3 parts
+- core
+- modules 
+- shared
+
+And via linter rules are created so that core modules are not dependant modules outside the code folder.
+If you install ESLint into VSCode, the editor will highlight where defined rules are broken. 
+You can also run the following command to check for linter errors.
 
 `npx eslint .`
